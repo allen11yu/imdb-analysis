@@ -1,0 +1,103 @@
+---
+title: "Midpoint Report"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library("knitr")
+source("scripts/summary_data.R")
+source("scripts/summarytable.R")
+source("scripts/piechart.R")
+source("scripts/platform_checker.R")
+source("scripts/scatter_plot.R")
+```
+
+## Introduction
+
+Recommendation systems are a relatively new occurrence that have become a 
+necessity when using modern day media platforms. One of the most famous 
+examples of this is movie recommendations, present on a variety of video 
+streaming services such as Netflix, Hulu, and HBO. As students interested in 
+data science and the applications thereof, as well as being avid consumers of 
+movies ourselves, we would like to see how we could develop our own movie 
+recommendation program. Prior to writing all the scripts/functions, we have 
+cleaned and merged the raw data sets. The most recent versions are named
+`movies_ratings_platforms.csv` and `movies_ratings_platforms_top1000.csv`.
+
+
+## Summary Information Script
+
+```{r, echo=FALSE}
+summary_info(mrp_top1000)
+```
+
+We created a summary information function to compute useful information
+about our movie platform data sets. When run on our cleaned version;
+`movies_ratings_platforms_top1000.csv` data set, we find that the data set has
+`r n_col` total columns, the titles of each being: `r col_names`. The main
+columns we will use for analysis are `weighted_average_vote` and `Meta_score`.
+The average value for IMdb rating and meta score are `r mean_imdb` and 
+`r mean_meta`, respectively. For `r mean_imdb`, this is from a range of 
+`r highest_imdb` (high) to `r lowest_imdb` (low). The data set also consists of 
+`r n_rows` movies, but as some movies are repeats, there are only actually 
+`r n_movies` movies. Of the available movies, the most certificates 
+are `r top_4_certificates` from most to least.
+
+## Aggregate Table Script
+
+```{r, echo=FALSE}
+kable(summary_table(movie_data))
+```
+
+This table summarizes the information of each movie, such as the movie name,
+the genre, weighted average vote, metascore, duration, and whether the movie
+is on each platform(Netflix, Hulu, Prime Video, and Disney). 
+
+## Chart Script (1) - Pie Chart
+
+This pie chart shows the popularity of each genre based on the movies that are
+rated above 7.0. The result shows that among those movies that are rated 7.0 or
+higher, 43.3% are Drama, 24.9% are Comedy, 16.9% are Action, 13.4% are Romance,
+and 1.5% are Horror. The genre Drama is the most popular and Horror is the least
+popular among high-rated movies.
+
+```{r, echo=FALSE}
+pie_chart(movie_platform, movie_top)
+```
+
+The numbers around the pie chart represent the number of movies in each genre.
+
+## Chart Script (2) - Bar Chart
+
+This bar chart is used to express binary variables. In other words, to show
+whether a movie is "on" or "not on" a certain platform. Bar chart is good for
+this intention, because it allows users to quickly spot the difference in value.
+Below is an example bar char that checks on the movie `A Christmas Prince`.
+
+```{r, echo=FALSE}
+platform_check("A Christmas Prince", movies_ratings_platforms)
+```
+
+The bar chart shows the platforms: Netflix, Disney., Hulu, Prime.Video and
+illustrate whether a certain movie is on or not on those platform.
+
+## Chart Script (3) - Scatter Plot
+
+This plot chart attempts to express the most popular movies available on every
+streaming platform. This expresses the types of streaming service data that
+we have access to, and demonstrates the capability of sorting the overall
+data frame for specific values as well as combining them afterwords.
+Scatter plots were used for this display because of the many data points
+specific numerical values, and multiple categories (platforms).
+
+```{r, echo=FALSE, warning=FALSE}
+popular_movies(mrp_top1000)
+```
+
+The scatter plot displays the top 5 movies from every streaming service.
+The points contain the name and rating of the movie (when hovered), and are
+color coded by streaming service. The y values are the movie ratings.

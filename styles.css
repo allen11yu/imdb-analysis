@@ -1,0 +1,36 @@
+#movies, #misc {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#movies div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+}
+
+#movies div p {
+  font-size: 15px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#movies div:hover {
+  background-color: yellow;
+}
+
+#summary {
+  border-style: ridge;
+}
+
+#dur, #gen, #release, #vote {
+  width: 25%;
+}
+
+#sumdiv {
+  margin-left: 5px;
+}
