@@ -1,5 +1,10 @@
 # Movie Recommendation System
 
+## Demo
+See the project here: https://allen2yu.shinyapps.io/MovieRecs/ 
+
+![Movie Recommendation System Demo](./images/demo.PNG "Movie Recommendation System Demo")
+
 ## Domain of Interest
 > Why are you interested in this field/domain?
 
